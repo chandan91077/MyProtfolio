@@ -9,7 +9,7 @@
     
     console.log('✅ EmailJS initialized for portfolio contact form');
     console.log('📧 Using Service ID: service_8a7n7w9');
-    console.log('📄 Using Template ID: template_i931pit');
+    console.log('📄 Using Template ID: template_4eevei2');
 })();
 
 // Handle contact form submission
