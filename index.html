@@ -581,8 +581,8 @@
             justify-content: center;
         }
 
-        /* Updated Project Icons to fill the div */
-        .project-icon {
+        /* Updated Project Icons and Images to fill the div */
+        .project-icon, .project-image img {
             width: 100%;
             height: 100%;
             display: flex;
@@ -593,7 +593,7 @@
             transition: all 0.3s ease;
         }
 
-        .project-card:hover .project-icon {
+        .project-card:hover .project-icon, .project-card:hover .project-image img {
             transform: scale(1.1);
         }
 
@@ -793,6 +793,82 @@
         .certification-card p {
             color: var(--accent-color);
             font-size: 0.95rem;
+        }
+
+        /* Modal for Certificates */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 99999;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 800px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+            opacity: 0;
+            transform: scale(0.9);
+            animation: modalZoom 0.3s forwards;
+        }
+        @keyframes modalZoom {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        #modalCaption {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 800px;
+            text-align: center;
+            color: var(--text-primary);
+            padding: 20px 0;
+            font-size: 1.1rem;
+        }
+        #modalCaption h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        .close-modal {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .close-modal:hover,
+        .close-modal:focus {
+            color: var(--primary-color);
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .cert-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-bottom: 1rem;
+        }
+        .cert-img:hover {
+            opacity: 0.8;
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
         }
 
         /* Extra Curricular Section */
@@ -1326,11 +1402,19 @@
                 <a href="#projects" class="btn btn-outline">
                     <i class="fas fa-code"></i> View Projects
                 </a>
-                <a href="https://drive.google.com/file/d/1hka7OG9tEEDCWCDsl0xqNiH2-H9gjwOe/view?usp=drive_link" target="_blank" id="downloadCV" class="btn btn-cv">
-                    <i class="fas fa-download"></i> Download CV
-                </a>
+                <span style="display: inline-flex; gap: 0.5rem; align-items: center;">
+                    <a href="CV1.pdf" target="_blank" class="btn btn-cv" title="View CV" style="border-top-right-radius: 0; border-bottom-right-radius: 0;">
+                        <i class="fas fa-eye"></i> View
+                    </a>
+                    <a href="CV1.pdf" download="Chandan_Yadav_CV.pdf" class="btn btn-cv" title="Download CV" style="border-top-left-radius: 0; border-bottom-left-radius: 0;">
+                        <i class="fas fa-download"></i> Download
+                    </a>
+                </span>
                 <a href="https://github.com/chandan91077" target="_blank" class="btn btn-outline">
                     <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="https://leetcode.com/u/MLxgDcm06t/" target="_blank" class="btn btn-outline" style="display:inline-flex;align-items:center;gap:0.5rem;">
+                    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/leetcode.svg" alt="LeetCode" style="width:1.2em;height:1.2em;vertical-align:middle;filter:brightness(0) invert(1);"> LeetCode
                 </a>
                 <a href="https://linkedin.com/in/chandanyadav426" target="_blank" class="btn btn-outline">
                     <i class="fab fa-linkedin"></i> LinkedIn
@@ -1376,9 +1460,9 @@
     <section id="skills" class="section">
         <h2 class="section-title animate-on-scroll">Skills</h2>
         <div class="skills-grid">
-            <div class="skill-category animate-on-scroll">
-                <h3><i class="fas fa-code"></i> Programming</h3>
-                <div class="skill-list">
+            <div class="skill-category animate-on-scroll" style="min-width:240px;display:flex;flex-direction:column;align-items:center;">
+                <h3 style="width:100%;text-align:center;"><i class="fas fa-code"></i> Programming</h3>
+                <div class="skill-list" style="justify-content:center;width:100%;">
                     <span class="skill-tag">Python</span>
                     <span class="skill-tag">JavaScript</span>
                     <span class="skill-tag">C++</span>
@@ -1387,9 +1471,9 @@
                 </div>
             </div>
 
-            <div class="skill-category animate-on-scroll">
-                <h3><i class="fas fa-layer-group"></i> Web Stack</h3>
-                <div class="skill-list">
+            <div class="skill-category animate-on-scroll" style="min-width:240px;display:flex;flex-direction:column;align-items:center;">
+                <h3 style="width:100%;text-align:center;"><i class="fas fa-layer-group"></i> Web Stack</h3>
+                <div class="skill-list" style="justify-content:center;width:100%;">
                     <span class="skill-tag">MongoDB</span>
                     <span class="skill-tag">Express.js</span>
                     <span class="skill-tag">React</span>
@@ -1400,9 +1484,9 @@
                 </div>
             </div>
 
-            <div class="skill-category animate-on-scroll">
-                <h3><i class="fas fa-tools"></i> Tools & Platforms</h3>
-                <div class="skill-list">
+            <div class="skill-category animate-on-scroll" style="min-width:240px;display:flex;flex-direction:column;align-items:center;">
+                <h3 style="width:100%;text-align:center;"><i class="fas fa-tools"></i> Tools & Platforms</h3>
+                <div class="skill-list" style="justify-content:center;width:100%;">
                     <span class="skill-tag">VS Code</span>
                     <span class="skill-tag">Ubuntu</span>
                     <span class="skill-tag">Git</span>
@@ -1416,9 +1500,9 @@
                 </div>
             </div>
 
-            <div class="skill-category animate-on-scroll">
-                <h3><i class="fas fa-comments"></i> Soft Skills</h3>
-                <div class="skill-list">
+            <div class="skill-category animate-on-scroll" style="min-width:240px;display:flex;flex-direction:column;align-items:center;">
+                <h3 style="width:100%;text-align:center;"><i class="fas fa-comments"></i> Soft Skills</h3>
+                <div class="skill-list" style="justify-content:center;width:100%;">
                     <span class="skill-tag">Communication</span>
                     <span class="skill-tag">Decision-making</span>
                     <span class="skill-tag">Problem-solving</span>
@@ -1432,79 +1516,65 @@
     <section id="projects" class="section">
         <h2 class="section-title animate-on-scroll">Projects</h2>
         <div class="projects-grid">
-            <!-- LPU/WIFI Auto-Login Automation -->
-            <div class="project-card project-1 animate-on-scroll">
+            <!-- Mediconnects -->
+            <div class="project-card animate-on-scroll">
                 <div class="project-image">
-                    <div class="project-icon">
-                        <i class="fas fa-wifi"></i>
-                    </div>
+                    <img src="Mediconnectprojects.png" alt="Mediconnects" style="object-fit: cover;">
                 </div>
                 <div class="project-content">
-                    <h3>LPU/WIFI Auto-Login Automation</h3>
-                    <p>Designed and automated LPU/WIFI login workflow using Python and OpenCV, enabling instant field detection and seamless authentication, reducing manual login effort.</p>
+                    <h3>Mediconnects</h3>
+                    <p>A comprehensive healthcare booking platform connecting patients with doctors and medical services efficiently.</p>
                     <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">PyAutoGUI</span>
-                        <span class="tech-tag">OpenCV</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ANVISER BIOTECH – Online Medical Store -->
-            <div class="project-card project-2 animate-on-scroll">
-                <div class="project-image">
-                    <div class="project-icon">
-                        <i class="fas fa-pills"></i>
-                    </div>
-                </div>
-                <div class="project-content">
-                    <h3>ANVIK BIOTECH – Online Medical Store</h3>
-                    <p>Developed a full-stack e-commerce platform supporting medicine inventory, customer orders, admin dashboards, and secure cloud deployment using AWS R2S and PM2.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">React</span>
                         <span class="tech-tag">Node.js</span>
-                        <span class="tech-tag">Express.js</span>
                         <span class="tech-tag">MongoDB</span>
-                        <span class="tech-tag">Bootstrap</span>
-                        <span class="tech-tag">AWS</span>
+                        <span class="tech-tag">Express</span>
+                    </div>
+                    <div class="project-links" style="display: flex; gap: 1rem; margin-top: 1.2rem;">
+                        <a href="https://www.prabhatanvik.shop/" target="_blank" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.8rem; flex: 1; justify-content: center;"><i class="fas fa-external-link-alt"></i> Live</a>
+                        <a href="https://github.com/chandan91077/healthcare-booking-platform" target="_blank" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.8rem; flex: 1; justify-content: center;"><i class="fab fa-github"></i> Code</a>
                     </div>
                 </div>
             </div>
 
-            <!-- Stock Market Analysis & Forecasting -->
-            <div class="project-card project-3 animate-on-scroll">
+            <!-- Anvikshop -->
+            <div class="project-card animate-on-scroll">
                 <div class="project-image">
-                    <div class="project-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
+                    <img src="anvikshopprojects.png" alt="Anvikshop" style="object-fit: cover;">
                 </div>
                 <div class="project-content">
-                    <h3>Stock Market Analysis & Forecasting</h3>
-                    <p>Implemented multi-modal time series forecasting (ARIMA, SARIMA, Prophet, LSTM) to analyze market patterns and built an interactive Streamlit dashboard for visualization.</p>
+                    <h3>Anvikshop</h3>
+                    <p>A modern e-commerce platform offering a seamless shopping experience with intuitive UI and secure checkout.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Tailwind CSS</span>
+                        <span class="tech-tag">Redux</span>
+                    </div>
+                    <div class="project-links" style="display: flex; gap: 1rem; margin-top: 1.2rem;">
+                        <a href="https://anvik.shop" target="_blank" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.8rem; flex: 1; justify-content: center;"><i class="fas fa-external-link-alt"></i> Live</a>
+                        <a href="https://github.com/chandan91077/frontend" target="_blank" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.8rem; flex: 1; justify-content: center;"><i class="fab fa-github"></i> Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mental Health AI Predictor -->
+            <div class="project-card animate-on-scroll">
+                <div class="project-image">
+                    <img src="Mentalhealthaipredictionprojects.png" alt="Mental Health AI Predictor" style="object-fit: cover;">
+                </div>
+                <div class="project-content">
+                    <h3>Mental Health AI Predictor</h3>
+                    <p>An AI-powered tool leveraging machine learning models to analyze inputs and predict potential mental health indicators.</p>
                     <div class="project-tech">
                         <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Pandas</span>
-                        <span class="tech-tag">NumPy</span>
-                        <span class="tech-tag">TensorFlow</span>
                         <span class="tech-tag">Streamlit</span>
+                        <span class="tech-tag">Machine Learning</span>
+                        <span class="tech-tag">Scikit-Learn</span>
                     </div>
-                </div>
-            </div>
-
-            <!-- Library Management System -->
-            <div class="project-card project-4 animate-on-scroll">
-                <div class="project-image">
-                    <div class="project-icon">
-                        <i class="fas fa-book"></i>
-                    </div>
-                </div>
-                <div class="project-content">
-                    <h3>Library Management System</h3>
-                    <p>Developed a Django-based system for managing books, issuing and returning records, and maintaining complete user logs with an intuitive interface.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Django</span>
-                        <span class="tech-tag">SQLite</span>
+                    <div class="project-links" style="display: flex; gap: 1rem; margin-top: 1.2rem;">
+                        <a href="https://mental-health-ai-predictor-bychandan.streamlit.app/" target="_blank" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.8rem; flex: 1; justify-content: center;"><i class="fas fa-external-link-alt"></i> Live</a>
+                        <a href="https://github.com/chandan91077/Mental-Health-AI-Predictor" target="_blank" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.8rem; flex: 1; justify-content: center;"><i class="fab fa-github"></i> Code</a>
                     </div>
                 </div>
             </div>
@@ -1515,13 +1585,16 @@
     <section id="experience" class="section">
         <h2 class="section-title animate-on-scroll">Experience & Training</h2>
         <div class="experience-timeline">
-            <div class="timeline-item animate-on-scroll">
-                <div class="timeline-header">
-                    <h3>ZIDIO DEVELOPMENT (Remote)</h3>
-                    <span class="timeline-date">Training</span>
-                </div>
-                <div class="timeline-content">
-                    <p>Worked on predictive analytics, ML model tuning, feature engineering, and building real-time forecasting pipelines to improve model performance.</p>
+            <div class="timeline-item animate-on-scroll" style="display: flex; align-items: flex-start; gap: 2rem;">
+                <img class="cert-img" src="zidiocertificate.png" alt="Zidio Certificate" style="width: 120px; height: 120px; object-fit: cover; border-radius: 10px; margin-top: 0.5rem; box-shadow: 0 4px 16px rgba(59,130,246,0.15);">
+                <div style="flex: 1;">
+                    <div class="timeline-header">
+                        <h3>ZIDIO DEVELOPMENT (Remote)</h3>
+                        <span class="timeline-date">Training</span>
+                    </div>
+                    <div class="timeline-content">
+                        <p>Worked on predictive analytics, ML model tuning, feature engineering, and building real-time forecasting pipelines to improve model performance.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1538,9 +1611,7 @@
             <div class="activity-card animate-on-scroll">
                 <h4>Built a real-time prototype at Hackathon 2.0</h4>
             </div>
-            <div class="activity-card animate-on-scroll">
-                <h4>Volunteered at LPU Technical Club events</h4>
-            </div>
+            
         </div>
     </section>
 
@@ -1601,24 +1672,24 @@
         <h3 class="section-title" style="font-size: 2rem; margin-top: 4rem;">Certifications & Courses</h3>
         <div class="certifications-grid" style="margin-top: 2rem;">
             <div class="certification-card animate-on-scroll">
+                <img class="cert-img" src="NPTLcloudcertificate.jpeg" alt="Cloud Computing" data-desc="Completed Cloud Computing course by NPTEL, mastering key cloud concepts computationally and architecturally.">
                 <h4>Cloud Computing</h4>
                 <p>NPTEL</p>
             </div>
             <div class="certification-card animate-on-scroll">
+                <img class="cert-img" src="DSAIAMNEO.png" alt="Data Structures & Algorithms Using C++" data-desc="Comprehensive certification in Data Structures & Algorithms Using C++ from Cipher School.">
                 <h4>Data Structures & Algorithms Using C++</h4>
                 <p>Cipher School</p>
             </div>
             <div class="certification-card animate-on-scroll">
-                <h4>Object-Oriented Programming</h4>
-                <p>Jamneo</p>
-            </div>
-            <div class="certification-card animate-on-scroll">
-                <h4>Decode JAVA with GoX</h4>
-                <p>AgnetCollege</p>
-            </div>
-            <div class="certification-card animate-on-scroll">
-                <h4>Mastering Python: Basic to Beyond</h4>
+                <img class="cert-img" src="Python Django Development .png" alt="Python Django Development" data-desc="Mastered the Python language alongside the Django framework for robust backend web development.">
+                <h4>Python Django Development</h4>
                 <p>CipherSchool</p>
+            </div>
+            <div class="certification-card animate-on-scroll">
+                <img class="cert-img" src="zidiocertificate.png" alt="Zidio Development Training" data-desc="Successfully completed professional training in Machine Learning and predictive analytics at Zidio Development.">
+                <h4>Zidio Development Training</h4>
+                <p>Zidio Development</p>
             </div>
         </div>
     </section>
@@ -1724,6 +1795,13 @@
         </div>
     </section>
 
+    <!-- Certificate Modal -->
+    <div id="certModal" class="modal">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="modalImg">
+        <div id="modalCaption"></div>
+    </div>
+
     <!-- Footer -->
     <footer>
         <div class="social-links">
@@ -1744,6 +1822,18 @@
 
     <!-- Main Script -->
     <script>
+        // Download confirmation for CV
+        document.addEventListener('DOMContentLoaded', function() {
+            var downloadBtn = document.querySelector('a.btn-cv[download]');
+            if (downloadBtn) {
+                downloadBtn.addEventListener('click', function(e) {
+                    var confirmed = confirm('Do you want to download the CV?');
+                    if (!confirmed) {
+                        e.preventDefault();
+                    }
+                });
+            }
+        });
         // Custom Cursor Functionality
         const cursor = document.querySelector('.cursor');
         const cursorFollower = document.querySelector('.cursor-follower');
@@ -1957,6 +2047,34 @@
                     });
                 }
             });
+        });
+
+        // Certificate Modal Logic
+        const modal = document.getElementById("certModal");
+        const modalImg = document.getElementById("modalImg");
+        const captionText = document.getElementById("modalCaption");
+        const certImages = document.querySelectorAll(".cert-img");
+        const closeModal = document.querySelector(".close-modal");
+
+        certImages.forEach(img => {
+            img.addEventListener("click", function() {
+                modal.style.display = "block";
+                modalImg.src = this.src;
+                captionText.innerHTML = `<h3>${this.alt}</h3><p>${this.getAttribute('data-desc')}</p>`;
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            });
+        });
+
+        closeModal.addEventListener("click", function() {
+            modal.style.display = "none";
+            document.body.style.overflow = 'auto';
+        });
+        
+        window.addEventListener("click", function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+                document.body.style.overflow = 'auto';
+            }
         });
 
         // Initialize everything

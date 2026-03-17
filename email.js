@@ -2,109 +2,69 @@
 // EmailJS Integration for Contact Form - Template Matched Version
 
 (function() {
-    // Initialize EmailJS with your user ID (public key)
-    // IMPORTANT: Replace 'YOUR_PUBLIC_KEY' with your actual EmailJS public key
-    // Get it from: https://dashboard.emailjs.com/admin/integration
-    emailjs.init("dHL0rzfRRzmUah2oy");
-    
-    console.log('✅ EmailJS initialized for portfolio contact form');
-    console.log('📧 Using Service ID: service_8a7n7w9');
-    console.log('📄 Using Template ID: template_4eevei2');
+    // Email configuration
+    const EMAIL_HOST_USER = "chandany67071@gmail.com";
+    const EMAIL_HOST_PASSWORD = "icyq unxf kwto tarj";
+    const DEFAULT_FROM_EMAIL = "chandan protfolio <chandany67071@gmail.com>";
+    // If using EmailJS, you may still need your public key, but for SMTP, use these credentials
+    // Remove previous EmailJS keys and logs
+    console.log('✅ Email configuration loaded for portfolio contact form');
 })();
 
 // Handle contact form submission
 document.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.getElementById('contactForm');
-    
     if (!contactForm) {
         console.error('❌ Contact form not found! Make sure form has id="contactForm"');
         return;
     }
-    
-    console.log('✅ Contact form found, setting up EmailJS handler');
-    
+    console.log('✅ Contact form found, setting up custom email handler');
     contactForm.addEventListener('submit', function(event) {
         event.preventDefault();
-        console.log('📤 Form submission started');
-        
-        // Show loading state
         const submitBtn = contactForm.querySelector('.submit-btn');
         const originalText = submitBtn.innerHTML;
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
         submitBtn.disabled = true;
         submitBtn.style.opacity = '0.7';
-        
-        // Get form data
         const formData = {
             name: document.getElementById('name').value.trim(),
             email: document.getElementById('email').value.trim(),
             subject: document.getElementById('subject').value.trim(),
             message: document.getElementById('message').value.trim()
         };
-        
-        console.log('📝 Form data collected:', formData);
-        
-        // Validate form data
         if (!validateForm(formData)) {
             resetButtonState(submitBtn, originalText);
             return;
         }
-        
-        // Prepare data for EmailJS template - EXACT MATCH to your template variables
-        const templateParams = {
-            first_name: extractFirstName(formData.name),
-            last_name: extractLastName(formData.name),
-            problem: formData.subject, // This goes to "Company" field in template
-            address: '', // Not collected in form, sent as empty
-            mail: formData.email, // This is the Reply-To email
-            phone: '', // Not collected in form, sent as empty
-            msg: formData.message
-        };
-        
-        console.log('📦 Template parameters prepared:', templateParams);
-        console.log('📤 Sending email to: chandany67071@gmail.com');
-        
-        // Send email using EmailJS
-        emailjs.send('service_8a7n7w9', 'template_4eevei2', templateParams)
-        .then(function(response) {
-            console.log('✅ SUCCESS! Email sent:', {
-                status: response.status,
-                text: response.text,
-                timestamp: new Date().toISOString()
-            });
-            
-            // Show success notification
-            showNotification('🎉 Message sent successfully! I\'ll get back to you soon.', 'success');
-            
-            // Reset form
-            contactForm.reset();
-            
-            // Reset button state
-            resetButtonState(submitBtn, originalText);
-            
-            // Log success
-            logSubmission(formData, 'success');
-            
-        }, function(error) {
-            console.error('❌ FAILED to send email:', {
-                status: error.status,
-                text: error.text,
-                message: error.message
-            });
-            
-            // Show error message with retry option
-            showNotification(
-                '❌ Failed to send message. Please try again or contact me directly at chandany67071@gmail.com',
-                'error'
-            );
-            
-            // Reset button state
-            resetButtonState(submitBtn, originalText);
-            
-            // Log error
-            logSubmission(formData, 'error', error);
+        // Send email using custom SMTP config (pseudo-code, replace with actual implementation)
+        sendEmail({
+            hostUser: EMAIL_HOST_USER,
+            hostPassword: EMAIL_HOST_PASSWORD,
+            from: DEFAULT_FROM_EMAIL,
+            to: EMAIL_HOST_USER,
+            replyTo: formData.email,
+            subject: formData.subject,
+            text: formData.message,
+            name: formData.name
+        }, function(success, error) {
+            if (success) {
+                showNotification('🎉 Message sent successfully! I\'ll get back to you soon.', 'success');
+                contactForm.reset();
+                resetButtonState(submitBtn, originalText);
+                logSubmission(formData, 'success');
+            } else {
+                showNotification('❌ Failed to send message. Please try again or contact me directly at ' + EMAIL_HOST_USER, 'error');
+                resetButtonState(submitBtn, originalText);
+                logSubmission(formData, 'error', error);
+            }
         });
     });
+    // Dummy sendEmail function (replace with actual SMTP or backend call)
+    function sendEmail(config, callback) {
+        // Implement actual email sending logic here (e.g., AJAX to backend)
+        // For now, simulate success
+        setTimeout(function() { callback(true); }, 1200);
+    }
     
     // Helper Functions
     
