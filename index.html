@@ -1479,8 +1479,9 @@
                     <span class="skill-tag">React</span>
                     <span class="skill-tag">Node.js</span>
                     <span class="skill-tag">HTML</span>
-                    <span class="skill-tag">CSS</span>
-                    <span class="skill-tag">Bootstrap</span>
+                    <span class="skill-tag">Docker</span>
+                    <span class="skill-tag">AWS EC2</span>
+                    <span class="skill-tag">CockroachDB</span>
                 </div>
             </div>
 
@@ -1530,9 +1531,10 @@
                         <span class="tech-tag">MongoDB</span>
                         <span class="tech-tag">Express</span>
                     </div>
-                    <div class="project-links" style="display: flex; gap: 1rem; margin-top: 1.2rem;">
-                        <a href="https://www.prabhatanvik.shop/" target="_blank" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.8rem; flex: 1; justify-content: center;"><i class="fas fa-external-link-alt"></i> Live</a>
-                        <a href="https://github.com/chandan91077/healthcare-booking-platform" target="_blank" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.8rem; flex: 1; justify-content: center;"><i class="fab fa-github"></i> Code</a>
+                    <div class="project-links" style="display: flex; gap: 1rem; margin-top: 1.2rem; flex-wrap: wrap;">
+                        <a href="https://www.prabhatanvik.shop/" target="_blank" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.8rem; flex: 1; min-width: 80px; justify-content: center;"><i class="fas fa-external-link-alt"></i> Live</a>
+                        <a href="https://github.com/chandan91077/healthcare-booking-platform" target="_blank" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.8rem; flex: 1; min-width: 80px; justify-content: center;"><i class="fab fa-github"></i> Code</a>
+                        <a href="YOUR_PLAYSTORE_LINK_HERE" target="_blank" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.8rem; flex: 1; min-width: 80px; justify-content: center;"><i class="fab fa-google-play"></i> Play Store</a>
                     </div>
                 </div>
             </div>
@@ -1686,11 +1688,7 @@
                 <h4>Python Django Development</h4>
                 <p>CipherSchool</p>
             </div>
-            <div class="certification-card animate-on-scroll">
-                <img class="cert-img" src="zidiocertificate.png" alt="Zidio Development Training" data-desc="Successfully completed professional training in Machine Learning and predictive analytics at Zidio Development.">
-                <h4>Zidio Development Training</h4>
-                <p>Zidio Development</p>
-            </div>
+            
         </div>
     </section>
 
@@ -1819,6 +1817,53 @@
         <p class="footer-text">&copy; 2024 Chandan Yadav. All rights reserved.</p>
         <p class="footer-text">Built with ❤️ using modern web technologies</p>
     </footer>
+
+    <!-- Interactive Character (Bot) -->
+    <div class="character-container" id="character">
+        <div class="speech-bubble" id="speechBubble">Hi! I'm Chandan's assistant! 👋</div>
+        <div class="character" id="characterBody">
+            <div class="character-head">
+                <div class="character-eyes">
+                    <div class="eye"></div>
+                    <div class="eye"></div>
+                </div>
+            </div>
+            <div class="character-body"></div>
+            <div class="character-arms">
+                <div class="arm"></div>
+                <div class="arm"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chatbot with Icon -->
+    <div class="chatbot-container">
+        <div class="chatbot-window" id="chatbotWindow">
+            <div class="chatbot-header">
+                <div class="bot-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div>
+                    <h4>Chandan's AI Assistant</h4>
+                    <p style="font-size: 12px; color: var(--text-secondary);">Ask me about Chandan!</p>
+                </div>
+            </div>
+            <div class="chatbot-messages" id="chatbotMessages">
+                <div class="message bot">
+                    Hello! I'm Chandan's AI assistant. I can tell you about his skills, projects, experience, and answer any questions you have! 🚀
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" placeholder="Ask me anything about Chandan..." id="chatInput">
+                <button class="send-btn" id="sendBtn">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+        <button class="chatbot-toggle" id="chatbotToggle">
+            <i class="fas fa-comments"></i>
+        </button>
+    </div>
 
     <!-- Main Script -->
     <script>
@@ -2143,5 +2188,423 @@
     
     <!-- EmailJS Script -->
     <script src="email.js"></script>
+<style>
+:root {
+    --primary-color: #3b82f6;
+    --secondary-color: #8b5cf6;
+    --accent-color: #10b981;
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --glass-bg: rgba(30, 41, 59, 0.7);
+    --glass-border: rgba(148, 163, 184, 0.1);
+    --gradient-primary: linear-gradient(135deg, #3b82f6, #8b5cf6, #10b981);
+    --character-primary: #3b82f6;
+    --character-secondary: #10b981;
+}
+/* Interactive Character Container */
+.character-container {
+    position: fixed;
+    right: 50px;
+    z-index: 100;
+    pointer-events: none;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.character {
+    width: 120px;
+    height: 150px;
+    position: relative;
+    transition: all 0.6s ease;
+}
+.character-head {
+    width: 60px;
+    height: 60px;
+    background: var(--character-primary);
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 3px solid var(--character-secondary);
+}
+.character-eyes {
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+.eye {
+    width: 8px;
+    height: 8px;
+    background: #333;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+.character.sleeping .eye {
+    height: 2px;
+    border-radius: 10px;
+}
+.character-body {
+    width: 40px;
+    height: 60px;
+    background: var(--character-secondary);
+    border-radius: 20px;
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.character-arms {
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 50px;
+}
+.arm {
+    width: 20px;
+    height: 40px;
+    background: var(--character-primary);
+    border-radius: 10px;
+    transition: all 0.5s ease;
+}
+.character.waving .arm:first-child {
+    animation: wave 2s infinite;
+}
+@keyframes wave {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-30deg); }
+    75% { transform: rotate(30deg); }
+}
+/* Speech Bubble */
+.speech-bubble {
+    position: absolute;
+    left: -180px;
+    top: -60px;
+    background: white;
+    color: #333;
+    padding: 10px 15px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 500;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    width: 160px;
+}
+.speech-bubble:after {
+    content: '';
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-left-color: white;
+    transform: translateY(-50%);
+}
+.speech-bubble.show {
+    opacity: 1;
+    transform: scale(1);
+}
+/* Chatbot Styles */
+.chatbot-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+.chatbot-toggle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--gradient-primary);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: white;
+    box-shadow: 0 5px 20px rgba(59, 130, 246, 0.4);
+    transition: all 0.3s ease;
+}
+.chatbot-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 30px rgba(59, 130, 246, 0.6);
+}
+.chatbot-window {
+    position: absolute;
+    bottom: 80px;
+    right: 0;
+    width: 350px;
+    height: 450px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+.chatbot-window.show {
+    display: flex;
+}
+.chatbot-header {
+    padding: 20px;
+    border-bottom: 1px solid var(--glass-border);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.bot-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--gradient-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+.chatbot-messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.message {
+    max-width: 80%;
+    padding: 12px 16px;
+    border-radius: 18px;
+    font-size: 14px;
+    line-height: 1.4;
+}
+.message.bot {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    align-self: flex-start;
+}
+.message.user {
+    background: var(--gradient-primary);
+    color: white;
+    align-self: flex-end;
+}
+.chatbot-input {
+    padding: 20px;
+    border-top: 1px solid var(--glass-border);
+    display: flex;
+    gap: 10px;
+}
+.chatbot-input input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1px solid var(--glass-border);
+    border-radius: 25px;
+    background: var(--glass-bg);
+    color: var(--text-primary);
+    font-size: 14px;
+}
+.chatbot-input input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+.send-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: var(--gradient-primary);
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+@media (max-width: 768px) {
+    .character-container {
+        right: 20px;
+        transform: scale(0.8);
+    }
+    .chatbot-window {
+        width: 300px;
+        height: 400px;
+    }
+}
+</style>
+<script>
+// Interactive Character System
+const character = document.getElementById('character');
+const characterBody = document.getElementById('characterBody');
+const speechBubble = document.getElementById('speechBubble');
+let currentSection = 'home';
+let characterState = 'idle';
+const characterMessages = {
+    home: ["Hi! I'm Chandan's assistant! 👋", "Welcome to his portfolio!", "Explore his amazing work! 🚀"],
+    about: ["Chandan is a full stack developer!", "He loves solving problems with code!", "Check out his skills! 💻"],
+    skills: ["Look at all these technologies! ⚡", "MERN stack, Python, ML...", "Versatile developer! 🎯"],
+    projects: ["Check out these cool projects! 🛠️", "From automation to ML systems!", "Innovative solutions! 💡"],
+    experience: ["Practical training experience! 📚", "Machine learning expertise!", "Continuous learner! 🌱"],
+    education: ["Strong academic background! 🎓", "LPU Computer Science!", "Excellent grades! ⭐"],
+    contact: ["Ready to connect? 📞", "Let's build something great!", "He's open to opportunities! 🤝"]
+};
+function updateCharacterPosition() {
+    const scrollY = window.scrollY;
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+    const scrollPercent = scrollY / (documentHeight - windowHeight);
+    const newTop = 100 + (window.innerHeight - 300) * scrollPercent;
+    character.style.top = `${Math.max(100, Math.min(newTop, window.innerHeight - 200))}px`;
+    const sections = ['home', 'about', 'skills', 'projects', 'experience', 'education', 'contact'];
+    let newSection = 'home';
+    sections.forEach(sectionId => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+            const rect = element.getBoundingClientRect();
+            if (rect.top <= windowHeight / 2 && rect.bottom >= windowHeight / 2) {
+                newSection = sectionId;
+            }
+        }
+    });
+    if (newSection !== currentSection) {
+        currentSection = newSection;
+        updateCharacterState();
+        showRandomMessage();
+    }
+}
+function updateCharacterState() {
+    characterBody.className = 'character';
+    switch(currentSection) {
+        case 'home':
+            characterBody.classList.add('waving');
+            characterState = 'waving';
+            break;
+        case 'about':
+        case 'skills':
+            characterBody.classList.add('bounce');
+            characterState = 'bounce';
+            break;
+        case 'projects':
+        case 'experience':
+            characterBody.classList.add('waving');
+            characterState = 'waving';
+            break;
+        default:
+            characterState = 'idle';
+    }
+}
+function showRandomMessage() {
+    const messages = characterMessages[currentSection];
+    if (messages) {
+        const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+        speechBubble.textContent = randomMessage;
+        speechBubble.classList.add('show');
+        setTimeout(() => {
+            speechBubble.classList.remove('show');
+        }, 3000);
+    }
+}
+character.addEventListener('click', () => {
+    showRandomMessage();
+    characterBody.classList.add('bounce');
+    setTimeout(() => {
+        characterBody.classList.remove('bounce');
+        updateCharacterState();
+    }, 2000);
+});
+// Chatbot System
+const chatbotToggle = document.getElementById('chatbotToggle');
+const chatbotWindow = document.getElementById('chatbotWindow');
+const chatbotMessages = document.getElementById('chatbotMessages');
+const chatInput = document.getElementById('chatInput');
+const sendBtn = document.getElementById('sendBtn');
+let chatbotOpen = false;
+const botResponses = {
+    'skills': "Chandan is skilled in Python, JavaScript, C++, Java, MERN stack, OpenCV, TensorFlow, and many more technologies! He's strong in both web development and machine learning. 🚀",
+    'experience': "He has training experience in predictive analytics and ML model tuning from Zidio Development. He's worked on real-time forecasting pipelines and model optimization. 📊",
+    'projects': "Here are some of Chandan's current projects: Mediconnects (healthcare booking platform), Anvikshop (modern e-commerce platform), and Mental Health AI Predictor (AI-powered mental health analysis tool). Each project showcases his full-stack and machine learning expertise! 🛠️",
+    'education': "Chandan is pursuing B.Tech in Computer Science from Lovely Professional University with 7.47 CGPA. He scored 80.6% in Intermediate and 86.3% in Matriculation. 🎓",
+    'contact': "You can reach Chandan through email (chandany67071@gmail.com), phone (+91 06820 00334), LinkedIn (linkedin.com/in/chandanyadav426), or GitHub (github.com/chandang1077). 📞",
+    'python': "Python is one of Chandan's core strengths! He uses it for web development (Django), automation (PyAutoGUI), machine learning (TensorFlow), and computer vision (OpenCV). 🐍",
+    'mern': "Chandan is proficient in the MERN stack (MongoDB, Express.js, React, Node.js). He built a complete online medical store using this technology stack. ⚛️",
+    'machine learning': "He has experience in machine learning with TensorFlow, time series forecasting (ARIMA, LSTM), and building interactive dashboards with Streamlit. 🤖",
+    'certifications': "Chandan holds certifications in Cloud Computing (NPTEL), Data Structures & Algorithms (Cipher School), Object-Oriented Programming (Jamneo), Java, and Python. 🏆",
+    'hire': "Chandan is available for opportunities! He's great at full-stack development, machine learning projects, automation, and creating efficient solutions. Reach out through the contact form! 💼"
+};
+function getBotResponse(message) {
+    const lowercaseMessage = message.toLowerCase();
+    for (const [keyword, response] of Object.entries(botResponses)) {
+        if (lowercaseMessage.includes(keyword.toLowerCase())) {
+            return response;
+        }
+    }
+    const defaultResponses = [
+        "That's a great question! Chandan is a skilled full-stack developer with expertise in MERN stack, Python, and Machine Learning. What specific area interests you? 🤔",
+        "I'd be happy to help! Chandan has experience with web development, automation, ML projects, and cloud platforms. Ask me about his skills, projects, or experience! 💡",
+        "Chandan loves building innovative solutions! He's worked on automation scripts, e-commerce platforms, and predictive models. What would you like to know more about? 🚀",
+        "Feel free to ask about Chandan's education, certifications, or technical expertise! He's always excited to discuss new opportunities and collaborations! ✨"
+    ];
+    return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
+}
+function addMessage(content, isBot = false) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message ${isBot ? 'bot' : 'user'}`;
+    messageDiv.textContent = content;
+    chatbotMessages.appendChild(messageDiv);
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+}
+function sendMessage() {
+    const message = chatInput.value.trim();
+    if (message) {
+        addMessage(message, false);
+        chatInput.value = '';
+        setTimeout(() => {
+            const response = getBotResponse(message);
+            addMessage(response, true);
+        }, 500);
+    }
+}
+chatbotToggle.addEventListener('click', () => {
+    chatbotOpen = !chatbotOpen;
+    if (chatbotOpen) {
+        chatbotWindow.classList.add('show');
+        chatbotToggle.innerHTML = '<i class="fas fa-times"></i>';
+    } else {
+        chatbotWindow.classList.remove('show');
+        chatbotToggle.innerHTML = '<i class="fas fa-comments"></i>';
+    }
+});
+sendBtn.addEventListener('click', sendMessage);
+chatInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        sendMessage();
+    }
+});
+window.addEventListener('scroll', updateCharacterPosition);
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        showRandomMessage();
+    }, 2000);
+});
+const style = document.createElement('style');
+style.textContent = `
+    .bounce {
+        animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-20px); }
+    }
+`;
+document.head.appendChild(style);
+</script>
 </body>
 </html>
