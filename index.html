@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chandan Yadav - Full Stack Developer</title>
-    <meta name="description" content="Chandan Yadav - Full Stack Developer specializing in MERN stack, Python, and Machine Learning">
+    <meta name="description" content="Chandan Yadav - Full Stack Developer specializing in MERN stack, TypeScript, Python, AI Applications, and Machine Learning">
     
     <!-- Three.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -30,7 +30,8 @@
     "https://github.com/chandan91077"
   ],
   "jobTitle": "Full Stack Developer",
-  "alumniOf": "Lovely Professional University"
+  "alumniOf": "Lovely Professional University",
+  "knowsAbout": ["Full Stack Development", "React", "Node.js", "TypeScript", "Python", "Machine Learning", "AI Applications"]
 }
 </script>
     
@@ -1500,6 +1501,7 @@
             <div class="skill-category animate-on-scroll" style="min-width:240px;display:flex;flex-direction:column;align-items:center;">
                 <h3 style="width:100%;text-align:center;"><i class="fas fa-code"></i> Programming</h3>
                 <div class="skill-list" style="justify-content:center;width:100%;">
+                    <span class="skill-tag">TypeScript</span>
                     <span class="skill-tag">Python</span>
                     <span class="skill-tag">JavaScript</span>
                     <span class="skill-tag">C++</span>
@@ -1515,6 +1517,7 @@
                     <span class="skill-tag">Express.js</span>
                     <span class="skill-tag">React</span>
                     <span class="skill-tag">Node.js</span>
+                    <span class="skill-tag">Tailwind CSS</span>
                     <span class="skill-tag">HTML</span>
                     <span class="skill-tag">Docker</span>
                     <span class="skill-tag">AWS EC2</span>
@@ -1523,8 +1526,11 @@
             </div>
 
             <div class="skill-category animate-on-scroll" style="min-width:240px;display:flex;flex-direction:column;align-items:center;">
-                <h3 style="width:100%;text-align:center;"><i class="fas fa-tools"></i> Tools & Platforms</h3>
+                <h3 style="width:100%;text-align:center;"><i class="fas fa-tools"></i> Tools &amp; Technologies</h3>
                 <div class="skill-list" style="justify-content:center;width:100%;">
+                    <span class="skill-tag">OpenAI API</span>
+                    <span class="skill-tag">Electron</span>
+                    <span class="skill-tag">Vite</span>
                     <span class="skill-tag">VS Code</span>
                     <span class="skill-tag">Ubuntu</span>
                     <span class="skill-tag">Git</span>
@@ -1554,6 +1560,32 @@
     <section id="projects" class="section">
         <h2 class="section-title animate-on-scroll">Projects</h2>
         <div class="projects-grid">
+            <!-- Career Copilot -->
+            <div class="project-card animate-on-scroll">
+                <div class="project-image">
+                    <img src="CareerCopilot.png" alt="Career Copilot" style="object-fit: cover;">
+                </div>
+                <div class="project-content">
+                    <h3>Career Copilot</h3>
+                    <p>Full-stack AI-powered interview &amp; coding preparation platform featuring automated resume auditing against job descriptions, AI mock interviews, STAR response evaluation, and an interactive coding sandbox.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">TypeScript</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">Express</span>
+                        <span class="tech-tag">MongoDB</span>
+                        <span class="tech-tag">OpenAI API</span>
+                        <span class="tech-tag">Electron</span>
+                        <span class="tech-tag">Tailwind CSS</span>
+                        <span class="tech-tag">Docker</span>
+                    </div>
+                    <div class="project-links" style="display: flex; gap: 1rem; margin-top: 1.2rem; flex-wrap: wrap;">
+                        <a href="https://career-copilot-lilac.vercel.app/" target="_blank" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.8rem; flex: 1; min-width: 80px; justify-content: center;"><i class="fas fa-external-link-alt"></i> Live</a>
+                        <a href="https://github.com/chandan91077/CareerCopilot" target="_blank" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.8rem; flex: 1; min-width: 80px; justify-content: center;"><i class="fab fa-github"></i> Code</a>
+                    </div>
+                </div>
+            </div>
+
             <!-- Mediconnects -->
             <div class="project-card animate-on-scroll">
                 <div class="project-image">
@@ -1717,6 +1749,11 @@
         <h3 class="section-title" style="font-size: 2rem; margin-top: 4rem;">Certifications & Courses</h3>
         <div class="certifications-grid" style="margin-top: 2rem;">
             <div class="certification-card animate-on-scroll">
+                <img class="cert-img" src="MongoDBCertificate.png" alt="MongoDB Certified Associate Data Modeler" data-desc="Official certification in MongoDB Data Modeling, validating expertise in document schema design, indexing strategies, relationship modeling, and database optimization.">
+                <h4>MongoDB Certified Associate Data Modeler</h4>
+                <p>MongoDB</p>
+            </div>
+            <div class="certification-card animate-on-scroll">
                 <img class="cert-img" src="NPTLcloudcertificate.jpeg" alt="Cloud Computing" data-desc="Completed Cloud Computing course by NPTEL, mastering key cloud concepts computationally and architecturally.">
                 <h4>Cloud Computing</h4>
                 <p>NPTEL</p>
@@ -1731,7 +1768,6 @@
                 <h4>Python Django Development</h4>
                 <p>CipherSchool</p>
             </div>
-            
         </div>
     </section>
 
@@ -2579,7 +2615,7 @@ const botResponses = {
     'python': "Python is one of Chandan's core strengths! He uses it for web development (Django), automation (PyAutoGUI), machine learning (TensorFlow), and computer vision (OpenCV). 🐍",
     'mern': "Chandan is proficient in the MERN stack (MongoDB, Express.js, React, Node.js). He built a complete online medical store using this technology stack. ⚛️",
     'machine learning': "He has experience in machine learning with TensorFlow, time series forecasting (ARIMA, LSTM), and building interactive dashboards with Streamlit. 🤖",
-    'certifications': "Chandan holds certifications in Cloud Computing (NPTEL), Data Structures & Algorithms (Cipher School), Object-Oriented Programming (Jamneo), Java, and Python. 🏆",
+    'certifications': "Chandan is a MongoDB Certified Associate Data Modeler! He also holds certifications in Cloud Computing (NPTEL), Data Structures & Algorithms (Cipher School), Python Django Development, and more. 🏆",
     'hire': "Chandan is available for opportunities! He's great at full-stack development, machine learning projects, automation, and creating efficient solutions. Reach out through the contact form! 💼"
 };
 function getBotResponse(message) {
